@@ -35,6 +35,7 @@ class Choice(models.Model):
 
 #ONE - SALES PERSON
 class Salesperson(models.model):
+    Salesperson_ID = models.ForeignKey(Customer, on_delete=models.CASCADE)
     last_Name = models.CharField(max_length = 20)
     first_Name = models.CharField(max_length = 20)
 
@@ -99,3 +100,13 @@ class partsUsed(models.model):
     Service_TicketID = models.ForeignKey(Service_TicketNum, on_delete=models.CASCADE)
     num_Used = models.IntegerField(default=0)
     price = models.CharField(max_length = 20)
+
+#Creating invoice
+class Invoice(models.model):
+    Invoice_ID = models.IntegerField(default=0)
+    Invoice_Num = models.IntegerField(default=0)
+    Date = models.DateTimeField('sales invoice date')
+    Car_ID = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer_ID = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    salesPerson_ID = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
